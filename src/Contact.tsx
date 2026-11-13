@@ -12,8 +12,6 @@ const nextSteps = [
   ['We reply', 'The right person on our team gets back to you by email or phone.'],
   ['We meet', 'If it is a fit, we arrange a call or a meeting at our Dubai Media City office.'],
 ]
-// Temporary test recipient. Change this address when switching to NJR.
-const enquiryRecipient = 'savitamerwade@bearlotsfriends.com'
 
 const directionsUrl = 'https://www.google.com/maps/search/?api=1&query=Business+Central+Towers+Tower+B+Dubai+Media+City'
 
@@ -44,13 +42,35 @@ function EnquiryForm() {
   const [status, setStatus] = useState<{ kind: 'success' | 'error'; message: string; reference?: string } | null>(null)
   const [sending, setSending] = useState(false)
   const submitting = useRef(false)
+  const [captchaImage, setCaptchaImage] = useState('')
+  const [captchaCode, setCaptchaCode] = useState('')
+  const [captchaLoading, setCaptchaLoading] = useState(true)
+  const [captchaError, setCaptchaError] = useState('')
+  const captchaRequest = useRef(0)
+  async function refreshCaptcha() {
+    const request = ++captchaRequest.current
+    setCaptchaLoading(true)
+    setCaptchaCode('')
+    setCaptchaError('')
+    try {
+      const response = await fetch('/api/contact.php', { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(15000) })
+      const result = await response.json()
+      if (!response.ok || !result.image) throw new Error('challenge')
+      if (request === captchaRequest.current) setCaptchaImage(result.image)
+    } catch {
+      if (request === captchaRequest.current) { setCaptchaImage(''); setCaptchaError('The security code could not load. Please refresh it. Error ID: NJR-CAPTCHA-LOAD') }
+    } finally {
+      if (request === captchaRequest.current) setCaptchaLoading(false)
+    }
+  }
   useEffect(() => {
-    const restore = () => { submitting.current = false; setSending(false) }
-    window.addEventListener('pageshow', restore)
-    return () => window.removeEventListener('pageshow', restore)
+    // Schedule the initial network request; cancel the first Strict Mode effect run.
+    const timer = window.setTimeout(() => { void refreshCaptcha() }, 0)
+    return () => window.clearTimeout(timer)
   }, [])
   const errors = validateEnquiry(fields)
-  const complete = Object.keys(errors).length === 0
+  const fieldsComplete = Object.keys(errors).length === 0
+  const complete = fieldsComplete && captchaCode.trim().length === 6 && !!captchaImage && !captchaLoading
 
   function updateField<K extends keyof EnquiryFields>(name: K, value: EnquiryFields[K]) {
     setFields(previous => ({ ...previous, [name]: value }))
@@ -68,7 +88,7 @@ function EnquiryForm() {
     }
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (submitting.current) return
     if (!complete) {
@@ -85,38 +105,25 @@ function EnquiryForm() {
     setStatus(null)
     const reference = `NJR-${crypto.randomUUID().slice(0, 8).toUpperCase()}`
     try {
-      // Standard POST lets FormSubmit enforce its hosted reCAPTCHA before delivery.
-      const submission = document.createElement('form')
-      submission.method = 'POST'
-      submission.action = `https://formsubmit.co/${enquiryRecipient}`
-      submission.hidden = true
-      const payload = {
-        _subject: `NJR Investments | New enquiry — ${enquiryType}`,
-        _template: 'table', _captcha: 'true', _honey: String(data.get('_honey') ?? ''),
-        _replyto: fields.email.trim(), _url: window.location.origin + '/contact',
-        'Submission reference': reference, 'Enquiry type': enquiryType,
-        Name: fields.fullName.trim(), email: fields.email.trim(),
-        Company: fields.company.trim() || 'Not provided', Phone: fields.phone.trim() || 'Not provided',
-        Country: countries.find(country => country.code === fields.country)?.name ?? fields.country, Message: fields.message.trim(),
-        Consent: 'Agreed to using these details to respond to this enquiry',
-      }
-      for (const [name, value] of Object.entries(payload)) {
-        const input = document.createElement('input')
-        input.type = 'hidden'
-        input.name = name
-        input.value = value
-        submission.append(input)
-      }
-      document.body.append(submission)
-      try {
-        HTMLFormElement.prototype.submit.call(submission)
-      } finally {
-        submission.remove()
+      const response = await fetch('/api/contact.php', {
+        method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+        signal: AbortSignal.timeout(55000),
+        body: JSON.stringify({ ...fields, enquiryType, captchaCode: captchaCode.trim(), _honey: String(data.get('_honey') ?? ''), reference }),
+      })
+      const result = await response.json()
+      if (!response.ok || !result.success) {
+        setStatus({ kind: 'error', message: result.message || 'Your enquiry could not be sent. Please try again.', reference: result.reference || `${reference}-SEND` })
+      } else {
+        setStatus({ kind: 'success', message: 'Thank you. Your enquiry has been sent. We’ll be in touch soon.' })
+        setFields({ ...emptyFields })
+        setTouched({})
       }
     } catch {
+      setStatus({ kind: 'error', message: 'We could not confirm delivery. Your details have been kept. Please try again shortly.', reference: `${reference}-NETWORK` })
+    } finally {
       submitting.current = false
       setSending(false)
-      setStatus({ kind: 'error', message: 'We could not open verification. Please try again. Your details have been kept in the form.', reference: `${reference}-VERIFICATION` })
+      void refreshCaptcha()
     }
   }
 
@@ -135,9 +142,18 @@ function EnquiryForm() {
     <label className="contact-field" htmlFor="country"><span id="country-label">Country</span><div className="contact-select"><select id="country" aria-labelledby="country-label" name="country" autoComplete="country" value={fields.country} onChange={event => updateField('country', event.target.value)} required disabled={sending} {...fieldProps('country')}><option value="" disabled>Select your country</option>{countries.map(({ code, name }) => <option value={code} key={code}>{name}</option>)}</select><span aria-hidden="true">▾</span></div>{fieldError('country')}</label>
     <label className="contact-field" htmlFor="message"><span id="message-label">Message</span><textarea id="message" name="message" placeholder="Tell us about your plans and timeline" required maxLength={4000} value={fields.message} onChange={event => updateField('message', event.target.value)} readOnly={sending} {...fieldProps('message')} />{fieldError('message')}</label>
     <div><label className="contact-consent"><input type="checkbox" name="consent" required checked={fields.consent} onChange={event => updateField('consent', event.target.checked)} disabled={sending} {...fieldProps('consent')} /><span id="consent-label">I agree to NJR Investments using these details to respond to my enquiry, as described in the <a href="/privacy-policy/" target="_blank" rel="noreferrer">privacy policy</a>.</span></label>{fieldError('consent')}</div>
-    <button className="njr-button contact-submit" type="submit" disabled={!complete || sending} aria-describedby={!complete ? 'contact-required-hint' : undefined}>{sending ? 'Opening verification…' : 'Send enquiry'}</button>
-    {!complete && <p className="contact-required-hint" id="contact-required-hint">Complete the required fields and agree to the privacy policy to send your enquiry.</p>}
-    <p className="contact-required-hint">You’ll complete a CAPTCHA security check before your enquiry is sent.</p>
+    <div className="contact-captcha">
+      <label htmlFor="captcha-code" id="captcha-label">Security code</label>
+      <div className="contact-captcha-challenge">
+        <div className="contact-captcha-image" aria-live="polite">{captchaLoading ? <span>Loading code…</span> : captchaImage ? <img src={captchaImage} alt="Security code: type the six characters shown" width="240" height="72" /> : <span>Code unavailable</span>}</div>
+        <button type="button" className="contact-captcha-refresh" onClick={() => void refreshCaptcha()} disabled={sending || captchaLoading} aria-label="Get a new security code">↻ <span>New code</span></button>
+      </div>
+      <input id="captcha-code" name="captchaCode" aria-labelledby="captcha-label" aria-describedby="captcha-hint" required autoComplete="off" autoCapitalize="characters" spellCheck={false} maxLength={6} placeholder="Enter the code above" value={captchaCode} disabled={sending || captchaLoading || !captchaImage} onChange={event => { setCaptchaCode(event.target.value.replace(/[^a-z0-9]/gi, '').toUpperCase()); setStatus(null) }} />
+      <p id="captcha-hint">Type the six characters shown above. Letters are not case sensitive.</p>
+      {captchaError && <p className="contact-field-error" role="alert">{captchaError}</p>}
+    </div>
+    <button className="njr-button contact-submit" type="submit" disabled={!complete || sending} aria-describedby={!complete ? 'contact-required-hint' : undefined}>{sending ? 'Sending…' : 'Send enquiry'}</button>
+    {!complete && <p className="contact-required-hint" id="contact-required-hint">Complete the required fields, agree to the privacy policy and enter the security code to send your enquiry.</p>}
     {status && <div className={`contact-feedback contact-feedback-${status.kind}`} role={status.kind === 'error' ? 'alert' : 'status'}><p>{status.message}</p>{status.reference && <p className="contact-error-reference">Error ID: {status.reference}</p>}</div>}
   </form>
 }

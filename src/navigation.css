@@ -28,3 +28,10 @@ a[data-node-id='2005:27'],a[data-node-id='2005:27']:hover,
   text-decoration:none;
   cursor:pointer;
 }
+
+/* Footer links keep a pointer without underlines in any interaction state. */
+.wwd-footer a,.wwd-footer a:hover,.wwd-footer a:focus-visible,
+[data-name="Footer"] a,[data-name="Footer"] a:hover,[data-name="Footer"] a:focus-visible {
+  text-decoration:none;
+  cursor:pointer;
+}
