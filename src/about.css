@@ -1,0 +1,83 @@
+@import '@fontsource/playfair-display/400-italic.css';
+
+.about-hero h1 {max-width:880px}
+.about-story,.about-chairman,.about-facts,.about-purpose,.about-values,.about-office {padding-block:112px}
+.about-story-row {display:flex;align-items:center;gap:96px;overflow:hidden}
+.about-story-copy {width:760px;flex:none;display:flex;flex-direction:column;gap:22px}
+.about-story-copy h2 {font:400 40px/47px var(--font-display)}
+.about-story-copy > p:not(.wwd-eyebrow) {font-size:17px;line-height:28px;color:var(--color-muted)}
+.about-since {width:440px;height:550px;flex:none;background:var(--color-ink);padding-inline:48px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px;color:var(--color-stone)}
+.about-since .wwd-eyebrow {color:var(--color-gold)}
+.about-year {font:400 132px/165px var(--font-display);color:var(--color-gold)}
+.about-gold-rule {height:2px;width:56px;background:var(--color-gold)}
+.about-since > p:last-child {font-size:17px;line-height:27px}
+.about-chairman {background:var(--color-stone);display:flex;flex-direction:column;gap:28px}
+.about-message {max-width:880px;display:flex;flex-direction:column;gap:20px}
+.about-message > p {font-size:18px;line-height:31px;color:var(--color-muted)}
+.about-message .about-quote {font:italic 400 30px/42px var(--font-display);color:var(--color-ink)}
+.about-signature {padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.about-signature > span {width:48px;height:2px;background:var(--color-gold);margin-bottom:12px}
+.about-signature strong {font-size:15px;line-height:19px;font-weight:700}
+.about-signature p {font-size:14px;line-height:18px;color:var(--color-muted)}
+.about-facts {background:white;display:flex;flex-direction:column;gap:32px}
+.about-facts dl {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0}
+.about-facts dl > div {border-left:1px solid var(--color-line);padding-inline:24px;display:flex;flex-direction:column;gap:8px}
+.about-facts dt {font-size:12px;line-height:15px;font-weight:700;letter-spacing:1.44px;text-transform:uppercase;color:var(--color-muted)}
+.about-facts dd {font:400 20px/26px var(--font-display);margin:0}
+.about-purpose {background:var(--color-ink);color:white;display:flex;flex-direction:column;gap:40px}
+.about-purpose > .wwd-eyebrow {color:var(--color-gold)}
+.about-purpose-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px}
+.about-purpose-grid article {border-top:2px solid var(--color-gold);padding-top:28px;display:flex;flex-direction:column;gap:16px}
+.about-purpose-grid h3 {font-size:13px;line-height:16px;font-weight:700;letter-spacing:1.56px;text-transform:uppercase;color:var(--color-stone)}
+.about-purpose-grid p {font:400 28px/38px var(--font-display)}
+.about-values {background:white;display:flex;flex-direction:column;gap:48px}
+.about-values ol {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;list-style:none;padding:0;margin:0}
+.about-values li {border-top:2px solid var(--color-gold);padding-top:28px;display:flex;flex-direction:column;gap:12px}
+.about-value-number {font-size:13px;line-height:16px;font-weight:700;letter-spacing:1.3px;color:var(--color-gold-text)}
+.about-values h3 {font:400 26px/33px var(--font-display)}
+.about-values li p {font-size:16px;line-height:26px;color:var(--color-muted)}
+.about-office {background:var(--color-stone);display:flex;flex-direction:column;gap:40px}
+.about-office-heading {display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.about-office-heading .wwd-heading {max-width:640px}
+.about-office address {width:420px;flex:none;font-size:16px;font-weight:600;font-style:normal;line-height:26px}
+.about-map {height:440px;background:white;border:1px solid var(--color-line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:16px}
+.about-map strong {font-size:14px;line-height:18px;font-weight:700}
+.about-map span {font-size:13px;line-height:16px;color:var(--color-muted)}
+.about-directions {font-size:15px;line-height:19px;font-weight:700;align-self:flex-start}
+@media (min-width:640px) and (max-width:1199px) {
+ .about-story-row {flex-direction:column;gap:48px;align-items:stretch}
+ .about-story-copy {width:100%}
+ .about-since {width:100%;height:400px}
+ .about-facts dl,.about-values ol {grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+ .about-office-heading {flex-direction:column;align-items:flex-start;gap:28px}
+ .about-office address {width:100%}
+}
+@media (max-width:639px) {
+ .about-story,.about-chairman,.about-facts,.about-purpose,.about-values,.about-office {padding-block:64px}
+ .about-story-row {flex-direction:column;gap:32px;align-items:stretch}
+ .about-story-copy {width:100%}
+ .about-story-copy h2 {font-size:28px;line-height:33px}
+ .about-story-copy > p:not(.wwd-eyebrow) {font-size:16px;line-height:26px}
+ .about-since {width:100%;height:360px;padding-inline:32px}
+ .about-year {font-size:96px;line-height:120px}
+ .about-chairman {gap:20px}
+ .about-chairman > .wwd-eyebrow {font-size:12px;line-height:15px;letter-spacing:1.68px}
+ .about-message > p {font-size:16px;line-height:27px}
+ .about-message .about-quote {font-size:22px;line-height:31px}
+ .about-facts dl {grid-template-columns:1fr;gap:16px}
+ .about-facts dl > div {border:0;padding:0}
+ .about-facts dd {font-size:18px;line-height:23px}
+ .about-purpose {gap:24px}
+ .about-purpose-grid {grid-template-columns:1fr;gap:32px}
+ .about-purpose-grid p {font-size:22px;line-height:30px}
+ .about-values {gap:28px}
+ .about-values .wwd-eyebrow {font-size:12px;line-height:15px;letter-spacing:1.68px}
+ .about-values ol {grid-template-columns:1fr;gap:24px}
+ .about-values li {padding-top:20px}
+ .about-values h3 {font-size:22px;line-height:28px}
+ .about-values li p {font-size:15px;line-height:25px}
+ .about-office {gap:24px}
+ .about-office-heading {flex-direction:column;align-items:flex-start;gap:28px}
+ .about-office address {width:100%}
+ .about-map {height:280px}
+}

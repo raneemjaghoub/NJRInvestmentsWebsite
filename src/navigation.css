@@ -1,0 +1,30 @@
+/* Keep the shared header mounted and reserve scrollbar space between routes. */
+html {scrollbar-gutter:stable;scroll-padding-top:124px}
+.wwd-header {position:sticky;top:0;z-index:40}
+.wwd-header nav > a:nth-child(1) {width:43px}
+.wwd-header nav > a:nth-child(2) {width:45px}
+.wwd-header nav > a:nth-child(3) {width:89px}
+.wwd-header a:hover,.mobile-menu a:hover,.njr-button:hover,[data-name='CTAs'] a:hover {text-decoration:none}
+.mobile-menu-toggle {position:fixed;z-index:50}
+.mobile-menu {position:fixed;inset:65px 0 0;overflow-y:auto;z-index:45}
+.route-content {animation:route-enter 160ms ease-out}
+@keyframes route-enter {from {opacity:.7} to {opacity:1}}
+@media (max-width:639px) {html {scroll-padding-top:89px}}
+@media (prefers-reduced-motion:reduce) {.route-content {animation:none}}
+
+/* CTA buttons and action links: pointer only, no underline. */
+a#node-2004_12,a#node-2004_14,
+a#node-2004_12:hover,a#node-2004_14:hover,
+.njr-button,.njr-button:hover,
+[data-name='CTAs'] a,[data-name='CTAs'] a:hover,
+[data-name='Service cards'] a,[data-name='Service cards'] a:hover,
+a[data-node-id='2005:14'],a[data-node-id='2005:14']:hover,
+a[data-node-id='2005:19'],a[data-node-id='2005:19']:hover,
+a[data-node-id='2018:54'],a[data-node-id='2018:54']:hover,
+a[data-node-id='2005:27'],a[data-node-id='2005:27']:hover,
+.wwd-includes a,.wwd-includes a:hover,
+.about-directions,.about-directions:hover,
+.contact-directions,.contact-directions:hover {
+  text-decoration:none;
+  cursor:pointer;
+}

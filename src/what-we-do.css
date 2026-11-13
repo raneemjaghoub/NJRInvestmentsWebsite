@@ -1,0 +1,138 @@
+/* Page 2 uses the shared Tailwind theme, fonts and button component. */
+.wwd-page { background:var(--color-paper); }
+.wwd-container {padding-inline:max(48px,calc((100% - 1200px)/2))}
+.njr-button {display:inline-flex;align-items:center;justify-content:center;padding:16px 28px;background:var(--color-gold);border-radius:2px;flex-shrink:0;min-height:51px;text-decoration:none!important}
+.njr-button:hover {background:#c3ad62}
+.wwd-header {height:100px;display:flex;align-items:center;justify-content:space-between;background:var(--color-paper);border-bottom:1px solid var(--color-line);box-shadow:0 2px 12px #0000000f}
+.wwd-header img {width:180px;height:67px;object-fit:contain}
+.wwd-header nav {display:flex;align-items:center;gap:40px;font-size:15px;font-weight:600;line-height:normal}
+.wwd-header [aria-current] {color:var(--color-gold-text);font-weight:700}
+.wwd-eyebrow {font-size:13px;font-weight:700;line-height:normal;letter-spacing:1.82px;text-transform:uppercase;color:var(--color-gold-text)}
+.wwd-hero {background:var(--color-ink);color:white;padding-top:64px;padding-bottom:96px;display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.wwd-hero nav {font-size:13px;line-height:normal;color:var(--color-stone);white-space:pre-wrap}
+.wwd-hero .wwd-eyebrow {color:var(--color-gold)}
+.wwd-hero h1 {font:400 52px/1.15 var(--font-display);max-width:860px}
+.wwd-hero-description {font-size:19px;line-height:1.6;color:var(--color-stone);max-width:720px}
+.wwd-heading {display:flex;flex-direction:column;gap:16px}
+.wwd-heading h2,.wwd-cta h2 {font:400 40px/1.18 var(--font-display);max-width:760px}
+.wwd-audiences {padding-block:112px;background:white;display:flex;flex-direction:column;gap:40px}
+.wwd-audience-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.wwd-audience-grid article {border-top:2px solid var(--color-gold);padding-top:24px;display:flex;flex-direction:column;gap:12px}
+.wwd-audience-grid h3 {font:400 24px/1.25 var(--font-display)}
+.wwd-audience-grid p {font-size:16px;line-height:1.65;color:var(--color-muted)}
+.wwd-service-section {padding-block:48px}
+.wwd-service-section > .wwd-heading {padding-top:64px;padding-bottom:8px}
+.wwd-service {display:grid;grid-template-columns:minmax(0,1fr) 480px;gap:96px;padding-block:64px;border-bottom:1px solid var(--color-line);scroll-margin-top:24px}
+.wwd-service:last-child {border-bottom:0}
+.wwd-summary {display:flex;flex-direction:column;gap:16px}
+.wwd-service-label {font-size:14px;font-weight:700;line-height:normal;letter-spacing:1.4px;color:var(--color-gold-text)}
+.wwd-summary h3 {font:400 36px/1.18 var(--font-display)}
+.wwd-summary > p:last-child {font-size:17px;line-height:1.65;color:var(--color-muted)}
+.wwd-includes {padding:32px;border:1px solid var(--color-line);background:white;display:flex;flex-direction:column;gap:14px;align-self:start}
+.wwd-includes h4 {font-size:12px;font-weight:700;line-height:normal;letter-spacing:1.44px;text-transform:uppercase;color:var(--color-muted)}
+.wwd-includes ul {display:flex;flex-direction:column;gap:14px;list-style:none;margin:0;padding:0}
+.wwd-includes li {display:flex;align-items:flex-start;gap:14px;font-size:16px;line-height:1.5}
+.wwd-includes li::before {content:'';width:8px;height:8px;flex:none;background:var(--color-gold)}
+.wwd-includes a {font-size:15px;font-weight:700;line-height:normal}
+.wwd-partnerships {background:white}
+.wwd-process {background:var(--color-stone);padding-block:112px;display:flex;flex-direction:column;gap:48px}
+.wwd-process ol {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;padding:0;margin:0}
+.wwd-process li {padding:28px;background:white;display:flex;flex-direction:column;gap:12px}
+.wwd-step-number {font:400 32px/normal var(--font-display);color:var(--color-gold-text)}
+.wwd-process h3 {font-size:17px;font-weight:700;line-height:normal}
+.wwd-process li p {font-size:15px;line-height:1.6;color:var(--color-muted)}
+.wwd-cta {background:var(--color-ink);color:white;padding-block:88px;display:flex;align-items:center;justify-content:space-between;gap:48px}
+.wwd-cta > div {max-width:680px;display:flex;flex-direction:column;gap:12px}
+.wwd-cta p {font-size:17px;line-height:1.6;color:var(--color-stone);max-width:620px}
+.wwd-footer {background:var(--color-ink);padding-top:80px;padding-bottom:40px;color:var(--color-stone);display:flex;flex-direction:column;gap:48px;font-size:15px;line-height:1.5}
+.wwd-footer-columns {display:flex;gap:64px}
+.wwd-brand {flex:1;min-width:0;display:flex;flex-direction:column;gap:12px}
+.wwd-brand img {width:216px;height:80px;object-fit:contain}
+.wwd-footer-links {display:grid;grid-template-columns:200px 200px 260px;gap:64px}
+.wwd-footer-links > div {display:flex;flex-direction:column;gap:14px}
+.wwd-footer-links h3 {color:var(--color-gold);font-size:12px;font-weight:700;letter-spacing:1.44px;line-height:normal;text-transform:uppercase}
+.wwd-footer-legal {border-top:1px solid white;padding-top:24px;display:flex;justify-content:space-between;gap:24px;font-size:13px;line-height:normal}
+.wwd-footer-legal > div {display:flex;gap:24px}
+.wwd-mobile {display:none}
+@media (min-width:640px) and (max-width:1199px) {
+ .wwd-header nav {gap:24px}
+ .wwd-hero h1 {max-width:100%}
+ .wwd-service {grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+ .wwd-process ol {grid-template-columns:repeat(2,minmax(0,1fr))}
+ .wwd-footer-columns {display:grid;grid-template-columns:1fr 1fr;gap:40px}
+ .wwd-footer-links {display:contents}
+ .wwd-footer-links > div {min-width:0}
+}
+@media (max-width:639px) {
+ .wwd-container {padding-inline:24px}
+ .wwd-header {height:65px}
+ .wwd-header img {width:130px;height:48px}
+ .wwd-header nav {display:none}
+ .wwd-hero {padding-top:40px;padding-bottom:64px}
+ .wwd-hero h1 {font-size:34px}
+ .wwd-hero-description {font-size:17px}
+ .wwd-hero .njr-button,.wwd-cta .njr-button {width:100%}
+ .wwd-heading h2,.wwd-cta h2 {font-size:28px}
+ .wwd-audiences {padding-block:64px;gap:24px}
+ .wwd-audience-grid {grid-template-columns:1fr;gap:32px}
+ .wwd-audience-grid h3 {font-size:21px}
+ .wwd-service-section {padding-block:28px}
+ .wwd-service-section > .wwd-heading {padding-top:40px}
+ .wwd-service {grid-template-columns:1fr;padding-block:40px;gap:32px}
+ .wwd-summary h3 {font-size:26px}
+ .wwd-summary > p:last-child {font-size:16px}
+ .wwd-includes {padding:32px 24px}
+ .wwd-process {padding-block:64px;gap:28px}
+ .wwd-process ol {grid-template-columns:1fr}
+ .wwd-step-number {font-size:24px}
+ .wwd-process h3 {font-size:16px}
+ .wwd-cta {padding-block:56px;flex-direction:column;align-items:stretch;gap:28px}
+ .wwd-cta p {font-size:16px}
+ .wwd-footer {padding-top:64px;padding-bottom:32px;gap:24px;font-size:14px;line-height:normal}
+ .wwd-footer-columns {flex-direction:column;gap:24px}
+ .wwd-brand {gap:24px}
+ .wwd-brand img {width:172px;height:64px}
+ .wwd-footer-links {grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+ .wwd-footer-links > div {gap:10px}
+ .wwd-footer-links h3 {font-size:11px;letter-spacing:1.32px}
+ .wwd-footer-contact,.wwd-desktop {display:none!important}
+ .wwd-mobile {display:inline}
+ .wwd-footer-legal {padding-top:20px;flex-direction:column;gap:8px;font-size:12px}
+ .wwd-footer-legal > div {gap:0}
+ .wwd-footer-legal > div > :is(a,span) + :is(a,span)::before {content:'   ·   ';white-space:pre}
+}
+/* Explicit line heights preserve the Figma text rhythm at reference widths. */
+.wwd-eyebrow {line-height:16px}
+.wwd-hero nav {line-height:16px}
+.wwd-hero h1 {line-height:60px}
+.wwd-hero-description {line-height:30px}
+.wwd-heading h2,.wwd-cta h2 {line-height:47px}
+.wwd-audience-grid h3 {line-height:30px}
+.wwd-audience-grid p {line-height:26px}
+.wwd-service-label {line-height:18px}
+.wwd-summary h3 {line-height:42px}
+.wwd-summary > p:last-child {line-height:28px}
+.wwd-includes h4 {line-height:15px}
+.wwd-includes a {line-height:19px}
+.wwd-step-number {line-height:43px}
+.wwd-process h3 {line-height:21px}
+.wwd-cta > div > p {line-height:27px}
+.wwd-cta .njr-button p {font-size:15px;line-height:normal;color:var(--color-ink)}
+.wwd-brand > .wwd-desktop {line-height:24px}
+.wwd-footer-links h3 {line-height:15px}
+.wwd-footer-links a,.wwd-footer-contact p {line-height:23px}
+.wwd-footer-legal {line-height:16px}
+@media (max-width:639px) {
+ .wwd-hero h1 {line-height:39px}
+ .wwd-hero-description {line-height:27px}
+ .wwd-heading h2,.wwd-cta h2 {line-height:33px}
+ .wwd-audience-grid h3 {line-height:26px}
+ .wwd-summary h3 {line-height:31px}
+ .wwd-summary > p:last-child {line-height:26px}
+ .wwd-step-number {line-height:32px}
+ .wwd-process h3 {line-height:20px}
+ .wwd-cta > div > p {line-height:26px}
+ .wwd-footer-links h3 {line-height:14px}
+ .wwd-footer-links a {line-height:18px}
+ .wwd-footer-legal {line-height:15px}
+}

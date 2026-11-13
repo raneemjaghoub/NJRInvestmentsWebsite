@@ -1,0 +1,62 @@
+/* Responsive rules from the SEO specification; desktop content remains capped at 1200px. */
+html {overflow-wrap:break-word}
+main,section,article,aside,nav {min-width:0}
+a,p,dd,address {overflow-wrap:anywhere}
+.wwd-header nav {gap:28px}
+.wwd-header nav > a:nth-child(4) {font-size:15px;line-height:19px;font-weight:600}
+.wwd-header nav a,.mobile-menu a {min-height:44px;display:inline-flex;align-items:center}
+.mobile-menu-toggle {min-width:44px;min-height:44px;right:16px;top:10px}
+.wwd-footer-links a {min-height:30px}
+.not-found {padding-block:112px;display:flex;flex-direction:column;gap:24px;min-height:60vh}
+.not-found h1 {font:400 clamp(34px,4vw,52px)/1.2 var(--font-display)}
+.not-found > p {font-size:18px;line-height:1.6;max-width:680px}
+.not-found nav {display:flex;flex-wrap:wrap;gap:16px}
+@media (min-width:1024px) and (max-width:1439px) {
+ .wwd-container,[data-name='Homepage v2 — Desktop 1440'] > [class*='px-'] {padding-inline:64px}
+ .wwd-header nav {gap:24px}
+ .about-story-copy {width:min(760px,60%)}
+ .about-story-row {gap:48px}
+ .about-since {width:calc(40% - 48px);min-width:280px;padding-inline:32px}
+ .about-story-copy h2 {font-size:36px;line-height:1.2}
+ .wwd-footer-columns {gap:32px}
+ .wwd-footer-links {grid-template-columns:150px 180px 240px;gap:24px}
+ .wwd-service {grid-template-columns:minmax(0,1fr) minmax(0,40%);gap:48px}
+ .contact-main {grid-template-columns:minmax(0,1fr) 34%;gap:48px}
+}
+@media (min-width:600px) and (max-width:1023px) {
+ .wwd-container,[data-name='Homepage v2 — Desktop 1440'] > [class*='px-'] {padding-inline:48px}
+ .wwd-header nav {gap:12px}
+ .wwd-header nav .njr-button {padding-inline:16px}
+ [data-name='Path cards'] {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+ [data-name^='Path —'] {padding:32px}
+ [data-name='Path cards'] > :last-child {grid-column:1 / -1}
+ [data-name='Hero text'] {width:100%;max-width:640px}
+ [data-name='Industry tiles'] {grid-template-columns:repeat(3,minmax(0,1fr))}
+ [data-name='Principles'] {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:600px) and (max-width:767px) {
+ .wwd-header {height:65px}
+ .wwd-header img {width:130px;height:48px}
+ .wwd-header nav {display:none}
+ .mobile-menu-toggle {display:block;position:fixed;z-index:50;font-size:25px;line-height:28px}
+ .mobile-menu {display:flex;position:fixed;inset:65px 0 0;z-index:45;background:var(--color-paper);padding:40px 48px;flex-direction:column;overflow-y:auto}
+ .mobile-menu > a {display:flex;justify-content:space-between;padding:18px 0;font-family:var(--font-display);font-size:30px;border-bottom:1px solid var(--color-line);text-decoration:none}
+ .mobile-menu .menu-cta {justify-content:center;background:var(--color-gold);font:700 15px var(--font-sans);margin-top:40px;padding:16px}
+}
+@media (max-width:599px) {
+ .wwd-container,[data-name='Homepage v2 — Desktop 1440'] > [class*='px-'] {padding-inline:24px}
+ .wwd-hero h1,.legal-hero h1 {font-size:clamp(30px,8.72vw,34px)}
+ [data-node-id='2004:31'] {font-size:clamp(30px,9.23vw,36px)}
+ .wwd-heading h2,.wwd-cta h2,.about-story-copy h2 {font-size:clamp(26px,7.18vw,28px)}
+ [data-name='Path cards'] {display:flex;flex-direction:column}
+ [data-name='Industry tiles'] {grid-template-columns:1fr}
+ [data-node-id='2005:43'],[data-name^='Principle —'] > p,.about-values li p {font-size:16px;line-height:1.65}
+ .wwd-footer a,[data-name='Footer'] a {min-height:44px;display:inline-flex;align-items:center}
+ .wwd-footer-legal > div {align-items:center;flex-wrap:wrap}
+ [data-name='CTAs'] > a {min-height:51px;width:100%}
+}
+@media (min-width:600px) {
+ .wwd-hero h1 {font-size:clamp(36px,3.62vw,52px);line-height:1.15}
+ .wwd-heading h2,.wwd-cta h2 {font-size:clamp(32px,2.78vw,40px);line-height:1.18}
+}
+@media (prefers-reduced-motion:reduce) {*,*::before,*::after {scroll-behavior:auto!important;animation:none!important;transition:none!important}}
