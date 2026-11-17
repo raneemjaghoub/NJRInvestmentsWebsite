@@ -13,12 +13,12 @@ Implemented against the supplied 8-page SEO specification, dated November 9, 202
 - `npm run build:staging` emits noindex metadata, a blocking robots file and an X-Robots-Tag rule. `npm run build` restores the indexable production version.
 - Generated `dist/.htaccess` contains HTTPS/www redirects, trailing-slash redirects, directory-index handling, and a real 404 ErrorDocument for SiteGround/Apache. Upload all contents of `dist`, including the hidden `.htaccess` file.
 - Responsive WebP image variants, proper alt text, explicit dimensions, lazy loading for below-fold imagery, high-priority/preloaded hero, and two preloaded Latin fonts. The main hero is approximately 27 KB.
-- Contact in the desktop/mobile navigation; service links support the enquiry-type slugs `advisory`, `connections`, and `joint-venture`. Existing full-label query links remain supported.
+- The header contact CTA and footer Contact link lead to the form. Enquiry type is required and starts empty, including when query parameters are present, following the latest requested behavior.
 - Responsive margins/layout refinements for phones, tablets, laptops and wide screens; reduced-motion handling, readable headings, and touch-friendly navigation. Sticky persistent header and client-side page navigation remain.
 
 ## Validation performed
 
-Production build and lint pass. All six pages were checked for title, description, canonical, robots, JSON-LD, a single H1, and content without JavaScript. Production browser checks cover 320, 390, 599, 600, 768, 1024, 1280, 1440 and 1920px widths with no horizontal overflow. Client-side metadata updates, mobile navigation, query-based enquiry selection and React hydration pass. Staging noindex behavior is verified. Home desktop/mobile/tablet previews and the share image were visually reviewed. Lazy monogram loading was checked separately.
+Production build and lint pass. All six pages were checked for title, description, canonical, robots, JSON-LD, a single H1, and content without JavaScript. Production browser checks cover 320, 390, 599, 600, 768, 1024, 1280, 1440 and 1920px widths with no horizontal overflow. Client-side metadata updates, mobile navigation, required enquiry-type selection and React hydration pass. Staging noindex behavior is verified. Home desktop/mobile/tablet previews and the share image were visually reviewed. Lazy monogram loading was checked separately.
 
 ## SiteGround / launch tasks still required
 
@@ -31,4 +31,4 @@ Production build and lint pass. All six pages were checked for title, descriptio
 7. Perform real iPhone Safari, Android Chrome, iPad, desktop Safari/Firefox/Edge and 200% browser-zoom checks. Automated checks here used Chrome only.
 8. Supply the original SVG logo if available. The supplied raster logo is preserved and optimized to WebP, not traced or falsely converted into SVG. Menu icons are SVG. The supplied hero source is 1024px wide; a higher-resolution original is needed for sharper large-screen 2x imagery.
 
-No analytics, new social profile URLs, Arabic pages, articles, thin service pages, account verification, or remote publishing were added. These require separate content/account inputs or later work. Legal text and its existing date placeholders remain as supplied.
+No analytics, new social profile URLs, Arabic pages, articles, thin service pages, account verification, or remote publishing were added. These require separate content/account inputs or later work. Legal pages share the last-modified date from `src/legal-config.ts`.
