@@ -15,7 +15,7 @@ Colors and fonts are configured in `src/index.css` using Tailwind's `@theme`. Mu
 
 ## Current implementation
 
-Home is implemented from Figma node 2004:19 with responsive adjustments for tablet and mobile. Mobile navigation opens and closes. About opens the standalone `/about` page; What we do opens the standalone `/what-we-do` page. Conversation buttons open `/contact`. Its enquiry form validates name, email, country, message and consent, then submits directly through FormSubmit to the temporary test recipient savitamerwade@bearlotsfriends.com. FormSubmit uses its table email template, and Reply-To is the visitor’s email. A one-time activation email must be confirmed by the recipient before delivery works.
+Home is implemented from Figma node 2004:19 with responsive adjustments for tablet and mobile. Mobile navigation opens and closes. About opens the standalone `/about` page; What we do opens the standalone `/what-we-do` page. Conversation buttons open `/contact`. Its enquiry form validates name, email, country, message and consent, then submits through the server endpoint to FormSubmit to the recipient configured in `public/api/contact-config.json`. FormSubmit uses its table email template, and Reply-To is the visitor’s email. A one-time activation email must be confirmed by the recipient before delivery works.
 
 The standalone What we do page is implemented from Figma desktop node 2001:541 and mobile node 2001:697 in file MZzZxDyRLMVbQRTJIii7dk. It reuses the theme, fonts, original logo and Button component. Desktop and mobile navigation link both pages, and all advisory/connections/joint-venture links target the corresponding service sections.
 
@@ -31,7 +31,7 @@ All six pages are implemented. Run `npm run dev` to review locally. Contact subm
 
 ## Contact email testing
 
-Submit the form and confirm the FormSubmit activation email in savitamerwade@bearlotsfriends.com (check spam too). Then submit another enquiry to test delivery. Change `enquiryRecipient` in `src/Contact.tsx` when moving to the NJR mailbox; the new recipient must also activate. The public contact address displayed on the website remains the NJR address. FormSubmit processes the form fields to send the email.
+Submit the form and confirm the FormSubmit activation email in the recipient configured in `public/api/contact-config.json` (check spam too). Then submit another enquiry to test delivery. Change `recipientEmail` in `public/api/contact-config.json` when moving to the NJR mailbox; the new recipient must also activate. The public contact address displayed on the website remains the NJR address. FormSubmit processes the form fields to send the email.
 
 Contact validation disables Send until name, valid email, country, nonblank message and consent are complete. Optional company and phone are not required. Errors appear after field blur; successful service acceptance shows confirmation. Failed requests preserve values and show a reference ID and failure category. Browser checks mock service success, network failure and rate limits without sending emails.
 

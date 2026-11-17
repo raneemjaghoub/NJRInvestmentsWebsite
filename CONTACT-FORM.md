@@ -4,7 +4,7 @@ The Contact page shows a six-character security image, a code entry field and Ne
 
 `npm run dev` runs the local Node endpoint through Vite. Production uses `public/api/contact.php`, copied to `dist/api/contact.php` by the build. Deploy the entire `dist` directory to SiteGround's `public_html`; PHP sessions, cURL and outbound HTTPS must be available. `vite preview` only previews static pages and does not run PHP. Production PHP execution must be enabled; do not deploy this endpoint to static-only hosting.
 
-The temporary recipient is savitamerwade@bearlotsfriends.com. Set the server environment variable `NJR_CONTACT_RECIPIENT` to change it, or change the fallback in both `server/contact.ts` and `public/api/contact.php`. Activate the new recipient with FormSubmit when switching. No credentials belong in frontend Vite environment variables.
+The enquiry recipient is configured in one place: `public/api/contact-config.json` (`recipientEmail`). Both the local Node handler and the SiteGround PHP endpoint read this file. Edit it, then rebuild and upload the updated `dist` contents. FormSubmit requires activation when switching to a new recipient. This file contains a public recipient address, not credentials.
 
 The email keeps FormSubmit's table template and sender branding. An accepted delivery request displays the on-page success message; errors retain the entered details and show an error ID. A provider acceptance does not guarantee inbox delivery. Verify a real enquiry after deploying on SiteGround; recipient activation may be required for the new domain.
 

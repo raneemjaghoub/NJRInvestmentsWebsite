@@ -57,7 +57,9 @@ try {
     foreach ($countries as $item) if ($item['code']===$text('country')) $country=$item['name'];
     if (!$name || strlen($name)>480 || !filter_var($email,FILTER_VALIDATE_EMAIL) || strlen($email)>254 || !$message || strlen($message)>16000 || strlen($company)>640 || strlen($phone)>160 || !$country || ($data['consent']??false)!==true || !in_array($type,['Advisory services','Strategic connections','Joint ventures','Other'],true)) fail(422,'Please check the required fields and try again.','FIELDS');
     $payload=['_url'=>'https://www.njrinvestments.net/contact/','_subject'=>"NJR Investments | New enquiry — $type",'_template'=>'table','_captcha'=>'false','_replyto'=>$email,'Submission reference'=>$reference,'Enquiry type'=>$type,'Name'=>$name,'email'=>$email,'Company'=>$company?:'Not provided','Phone'=>$phone?:'Not provided','Country'=>$country,'Message'=>$message,'Consent'=>'Agreed to using these details to respond to this enquiry'];
-    $recipient=getenv('NJR_CONTACT_RECIPIENT') ?: 'savitamerwade@bearlotsfriends.com';
+    $config=json_decode(file_get_contents(__DIR__.'/contact-config.json'), true, 512, JSON_THROW_ON_ERROR);
+    $recipient=$config['recipientEmail'] ?? '';
+    if (!is_string($recipient) || !filter_var($recipient,FILTER_VALIDATE_EMAIL)) fail(500,'The enquiry service is not configured correctly. Please email us directly.','CONFIG');
     $curl=curl_init('https://formsubmit.co/ajax/'.rawurlencode($recipient));
     $addresses=dns_get_record('formsubmit.co', DNS_A);
     if (!$addresses) fail(502,'The email service could not be reached. Please try again shortly.','DNS');

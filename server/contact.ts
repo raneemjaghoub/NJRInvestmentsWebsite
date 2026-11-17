@@ -8,7 +8,6 @@ import { deliverEnquiry } from './formsubmit.ts'
 type Session = { code: string; expires: number }
 const sessions = new Map<string, Session>()
 const limits = new Map<string, { count: number; expires: number }>()
-const recipient = process.env.NJR_CONTACT_RECIPIENT || 'savitamerwade@bearlotsfriends.com'
 function allowed(key: string, maximum: number) {
   const now = Date.now()
   for (const [id, entry] of limits) if (entry.expires < now) limits.delete(id)
@@ -69,7 +68,9 @@ export function contactApi(): Plugin {
         if (!name || name.length > 120 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || !message || message.length > 4000 || company.length > 160 || phone.length > 40 || !country || data.consent !== true || !['Advisory services', 'Strategic connections', 'Joint ventures', 'Other'].includes(type)) return fail(422, 'Please check the required fields and try again.', 'FIELDS')
         const payload = { _url: `http://${req.headers.host}/contact/`, _subject: `NJR Investments | New enquiry — ${type}`, _template: 'table', _captcha: 'false', _replyto: email, 'Submission reference': reference, 'Enquiry type': type, Name: name, email, Company: company || 'Not provided', Phone: phone || 'Not provided', Country: country.name, Message: message, Consent: 'Agreed to using these details to respond to this enquiry' }
         if (process.env.NJR_CONTACT_TEST === '1') return respond(200, { success: true, reference })
-        const upstream = await deliverEnquiry(recipient, payload)
+        const config = JSON.parse(readFileSync('public/api/contact-config.json', 'utf8')) as { recipientEmail: string }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.recipientEmail)) return fail(500, 'The enquiry service is not configured correctly. Please email us directly.', 'CONFIG')
+        const upstream = await deliverEnquiry(config.recipientEmail, payload)
         const result = upstream.result
         if (upstream.status < 200 || upstream.status >= 300 || ![true, 'true'].includes(result.success ?? false) || /activat|confirm your email/i.test(result.message ?? '')) return fail(502, 'Email delivery could not be confirmed. Please try again later or email us directly.', 'DELIVERY')
         return respond(200, { success: true, reference })

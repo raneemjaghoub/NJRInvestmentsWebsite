@@ -1,6 +1,6 @@
 import { countries } from './countries'
 import OfficeMap from './OfficeMap'
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { PageFooter } from './WhatWeDo'
 import './contact.css'
@@ -30,13 +30,8 @@ function validateEnquiry(fields: EnquiryFields): FieldErrors {
   return errors
 }
 
-const subscribeToLocation = () => () => {}
-
 function EnquiryForm() {
-  const type = useSyncExternalStore(subscribeToLocation, () => new URLSearchParams(window.location.search).get('type') ?? '', () => '')
-  const aliases: Record<string, string> = { advisory: 'Advisory services', connections: 'Strategic connections', 'joint-venture': 'Joint ventures', other: 'Other' }
-  const [enquiryOverride, setEnquiryType] = useState<string | null>(null)
-  const enquiryType = enquiryOverride ?? aliases[type] ?? (enquiryTypes.includes(type) ? type : enquiryTypes[0])
+  const [enquiryType, setEnquiryType] = useState('')
   const [fields, setFields] = useState<EnquiryFields>({ ...emptyFields })
   const [touched, setTouched] = useState<Partial<Record<keyof EnquiryFields, boolean>>>({})
   const [status, setStatus] = useState<{ kind: 'success' | 'error'; message: string; reference?: string } | null>(null)
@@ -69,7 +64,7 @@ function EnquiryForm() {
     return () => window.clearTimeout(timer)
   }, [])
   const errors = validateEnquiry(fields)
-  const fieldsComplete = Object.keys(errors).length === 0
+  const fieldsComplete = enquiryTypes.includes(enquiryType) && Object.keys(errors).length === 0
   const complete = fieldsComplete && captchaCode.trim().length === 6 && !!captchaImage && !captchaLoading
 
   function updateField<K extends keyof EnquiryFields>(name: K, value: EnquiryFields[K]) {
@@ -93,6 +88,10 @@ function EnquiryForm() {
     if (submitting.current) return
     if (!complete) {
       setTouched({ fullName: true, email: true, country: true, message: true, consent: true })
+      if (!enquiryTypes.includes(enquiryType)) {
+        event.currentTarget.querySelector<HTMLInputElement>('input[name="enquiryType"]')?.focus()
+        return
+      }
       const firstField = Object.keys(errors)[0]
       const element = event.currentTarget.elements.namedItem(firstField)
       if (element instanceof HTMLElement) element.focus()
@@ -116,6 +115,7 @@ function EnquiryForm() {
       } else {
         setStatus({ kind: 'success', message: 'Thank you. Your enquiry has been sent. We’ll be in touch soon.' })
         setFields({ ...emptyFields })
+        setEnquiryType('')
         setTouched({})
       }
     } catch {
@@ -130,20 +130,21 @@ function EnquiryForm() {
   return <form className="contact-form" onSubmit={handleSubmit} aria-labelledby="enquiry-heading" aria-busy={sending} noValidate>
     <input name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
     <h2 id="enquiry-heading">Send us an enquiry</h2>
-    <fieldset className="contact-type" disabled={sending}><legend>I'm interested in</legend><div className="contact-chips">{enquiryTypes.map(type => <label className="contact-chip" key={type}><input type="radio" name="enquiryType" value={type} checked={enquiryType === type} onChange={() => { setEnquiryType(type); setStatus(null) }} /><span>{type}</span></label>)}</div></fieldset>
+    <p className="contact-required-hint">* Required fields</p>
+    <fieldset className="contact-type" disabled={sending}><legend>I'm interested in <span aria-hidden="true">*</span></legend><div className="contact-chips">{enquiryTypes.map(type => <label className="contact-chip" key={type}><input type="radio" name="enquiryType" required value={type} checked={enquiryType === type} onChange={() => { setEnquiryType(type); setStatus(null) }} /><span>{type}</span></label>)}</div></fieldset>
     <div className="contact-field-row">
-      <label className="contact-field" htmlFor="full-name"><span id="fullName-label">Full name</span><input id="full-name" name="fullName" autoComplete="name" placeholder="Your name" required maxLength={120} value={fields.fullName} onChange={event => updateField('fullName', event.target.value)} readOnly={sending} {...fieldProps('fullName')} />{fieldError('fullName')}</label>
+      <label className="contact-field" htmlFor="full-name"><span id="fullName-label">Full name <span aria-hidden="true">*</span></span><input id="full-name" name="fullName" autoComplete="name" placeholder="Your name" required maxLength={120} value={fields.fullName} onChange={event => updateField('fullName', event.target.value)} readOnly={sending} {...fieldProps('fullName')} />{fieldError('fullName')}</label>
       <label className="contact-field" htmlFor="company"><span>Company (optional)</span><input id="company" name="company" autoComplete="organization" placeholder="Company name" maxLength={160} value={fields.company} onChange={event => updateField('company', event.target.value)} readOnly={sending} /></label>
     </div>
     <div className="contact-field-row">
-      <label className="contact-field" htmlFor="email"><span id="email-label">Email</span><input id="email" name="email" type="email" autoComplete="email" placeholder="name@company.com" required maxLength={254} value={fields.email} onChange={event => updateField('email', event.target.value)} readOnly={sending} {...fieldProps('email')} />{fieldError('email')}</label>
+      <label className="contact-field" htmlFor="email"><span id="email-label">Email <span aria-hidden="true">*</span></span><input id="email" name="email" type="email" autoComplete="email" placeholder="name@company.com" required maxLength={254} value={fields.email} onChange={event => updateField('email', event.target.value)} readOnly={sending} {...fieldProps('email')} />{fieldError('email')}</label>
       <label className="contact-field" htmlFor="phone"><span>Phone (optional)</span><input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="+971 …" maxLength={40} value={fields.phone} onChange={event => updateField('phone', event.target.value)} readOnly={sending} /></label>
     </div>
-    <label className="contact-field" htmlFor="country"><span id="country-label">Country</span><div className="contact-select"><select id="country" aria-labelledby="country-label" name="country" autoComplete="country" value={fields.country} onChange={event => updateField('country', event.target.value)} required disabled={sending} {...fieldProps('country')}><option value="" disabled>Select your country</option>{countries.map(({ code, name }) => <option value={code} key={code}>{name}</option>)}</select><span aria-hidden="true">▾</span></div>{fieldError('country')}</label>
-    <label className="contact-field" htmlFor="message"><span id="message-label">Message</span><textarea id="message" name="message" placeholder="Tell us about your plans and timeline" required maxLength={4000} value={fields.message} onChange={event => updateField('message', event.target.value)} readOnly={sending} {...fieldProps('message')} />{fieldError('message')}</label>
-    <div><label className="contact-consent"><input type="checkbox" name="consent" required checked={fields.consent} onChange={event => updateField('consent', event.target.checked)} disabled={sending} {...fieldProps('consent')} /><span id="consent-label">I agree to NJR Investments using these details to respond to my enquiry, as described in the <a href="/privacy-policy/" target="_blank" rel="noreferrer">privacy policy</a>.</span></label>{fieldError('consent')}</div>
+    <label className="contact-field" htmlFor="country"><span id="country-label">Country <span aria-hidden="true">*</span></span><div className="contact-select"><select id="country" aria-labelledby="country-label" name="country" autoComplete="country" value={fields.country} onChange={event => updateField('country', event.target.value)} required disabled={sending} {...fieldProps('country')}><option value="" disabled>Select your country</option>{countries.map(({ code, name }) => <option value={code} key={code}>{name}</option>)}</select><span aria-hidden="true">▾</span></div>{fieldError('country')}</label>
+    <label className="contact-field" htmlFor="message"><span id="message-label">Message <span aria-hidden="true">*</span></span><textarea id="message" name="message" placeholder="Tell us about your plans and timeline" required maxLength={4000} value={fields.message} onChange={event => updateField('message', event.target.value)} readOnly={sending} {...fieldProps('message')} />{fieldError('message')}</label>
+    <div><label className="contact-consent"><input type="checkbox" name="consent" required checked={fields.consent} onChange={event => updateField('consent', event.target.checked)} disabled={sending} {...fieldProps('consent')} /><span id="consent-label">I agree to NJR Investments using these details to respond to my enquiry, as described in the <a href="/privacy-policy/" target="_blank" rel="noreferrer">privacy policy</a>. <span aria-hidden="true">*</span></span></label>{fieldError('consent')}</div>
     <div className="contact-captcha">
-      <label htmlFor="captcha-code" id="captcha-label">Security code</label>
+      <label htmlFor="captcha-code" id="captcha-label">Security code <span aria-hidden="true">*</span></label>
       <div className="contact-captcha-challenge">
         <div className="contact-captcha-image" aria-live="polite">{captchaLoading ? <span>Loading code…</span> : captchaImage ? <img src={captchaImage} alt="Security code: type the six characters shown" width="240" height="72" /> : <span>Code unavailable</span>}</div>
         <button type="button" className="contact-captcha-refresh" onClick={() => void refreshCaptcha()} disabled={sending || captchaLoading} aria-label="Get a new security code">↻ <span>New code</span></button>
@@ -165,7 +166,6 @@ export default function Contact() {
       <section className="contact-main wwd-container" aria-label="Enquiry form and contact details">
         <EnquiryForm />
         <aside className="contact-details"><p className="wwd-eyebrow">Get in touch</p>
-          <div className="contact-detail"><h3>Email</h3><a href="mailto:info@njrinvestments.net">info@njrinvestments.net</a></div>
           <div className="contact-detail"><h3>Office</h3><address>Business Central Towers, Tower B, Office 1308<br />Dubai Media City, Dubai, United Arab Emirates</address></div>
           <div className="contact-detail"><h3>Office hours</h3><p>Monday to Friday, 9:00 to 18:00 GST</p></div>
           <OfficeMap className="contact-map" />

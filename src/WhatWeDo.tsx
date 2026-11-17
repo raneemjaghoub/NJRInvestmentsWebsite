@@ -63,7 +63,7 @@ function ServiceDetail({ service }: { service: typeof services[number] }) {
 export function PageHeader({ active = 'what-we-do' }: { active?: 'home' | 'about' | 'what-we-do' | 'contact' | 'privacy' | 'terms' }) {
   return <header className="wwd-header wwd-container">
     <a href="/" aria-label="NJR Investments home"><img src="/assets/imgLogo-360.webp" srcSet="/assets/imgLogo-180.webp 180w, /assets/imgLogo-360.webp 360w, /assets/imgLogo-540.webp 540w" sizes="(max-width: 599px) 130px, 216px" alt="NJR Investments" width="180" height="67" /></a>
-    <nav aria-label="Main navigation"><a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a><a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About</a><a href="/what-we-do/" aria-current={active === 'what-we-do' ? 'page' : undefined}>What we do</a><a className="header-contact" href="/contact/">Contact</a><Button className="njr-button" label="Start a conversation" /></nav>
+    <nav aria-label="Main navigation"><a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a><a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About</a><a href="/what-we-do/" aria-current={active === 'what-we-do' ? 'page' : undefined}>What we do</a><Button className="njr-button" label="Start a conversation" /></nav>
   </header>
 }
 

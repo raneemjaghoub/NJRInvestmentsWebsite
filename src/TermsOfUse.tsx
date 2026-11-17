@@ -1,3 +1,4 @@
+import { legalLastModified } from './legal-config'
 import { PageFooter } from './WhatWeDo'
 import './legal.css'
 
@@ -56,7 +57,7 @@ const sections = [
   {
     "title": "9. Changes to these terms",
     "paragraphs": [
-      "We may update these terms from time to time. The \"Last updated\" date at the top shows when they last changed. Continuing to use the website after a change means you accept the updated terms."
+      "We may update these terms from time to time. The \"Last modified\" date at the top shows when they last changed. Continuing to use the website after a change means you accept the updated terms."
     ]
   },
   {
@@ -80,7 +81,7 @@ function TermsParagraph({ text }: { text: string }) {
 export default function TermsOfUse() {
   return <div className="legal-page">
     <main>
-      <header className="legal-hero wwd-container"><nav aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span>Terms of use</span></nav><h1>Terms of use</h1><p>Last updated: [date]</p></header>
+      <header className="legal-hero wwd-container"><nav aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span>Terms of use</span></nav><h1>Terms of use</h1><p>Last modified: <time dateTime={legalLastModified.date}>{legalLastModified.label}</time></p></header>
       <div className="legal-body wwd-container"><article className="legal-content" aria-label="Terms of use">
         <p>{"These terms apply to your use of njrinvestments.net (the \"website\"), operated by NJR Investments LLC (\"NJR\", \"we\", \"us\"). By using the website, you agree to these terms."}</p>
         {sections.map(section => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs.map(text => <TermsParagraph key={text} text={text} />)}</section>)}

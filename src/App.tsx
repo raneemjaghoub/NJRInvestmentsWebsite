@@ -54,7 +54,7 @@ export default function App({ initialLocation }: { initialLocation?: string } = 
     </div>
     <button className="mobile-menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? '×' : <img src="/assets/menu.svg" alt="" />}</button>
     {menuOpen && <nav className="mobile-menu" aria-label="Mobile navigation">
-      {['Home', 'About', 'What we do', 'Contact'].map((label, index) => <a key={label} href={['/', '/about/', '/what-we-do/', '/contact/'][index]}>{label}<span>→</span></a>)}
+      {['Home', 'About', 'What we do'].map((label, index) => <a key={label} href={['/', '/about/', '/what-we-do/'][index]}>{label}<span>→</span></a>)}
       <a className="menu-cta" href="/contact/">Start a conversation</a>
     </nav>}
   </div>

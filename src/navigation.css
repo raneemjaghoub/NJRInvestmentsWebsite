@@ -35,3 +35,6 @@ a[data-node-id='2005:27'],a[data-node-id='2005:27']:hover,
   text-decoration:none;
   cursor:pointer;
 }
+
+/* Match the mobile navigation arrows to the Figma gold token. */
+.mobile-menu > a > span {color:var(--color-gold);font:400 20px/normal var(--font-sans)}
