@@ -418,7 +418,7 @@ export default function Home() {
             <div className="h-[80px] relative shrink-0 w-[216px]" data-node-id="2014:43" data-name="Logo">
               <img alt="NJR Investments" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgLogo} srcSet="/assets/imgLogo-180.webp 180w, /assets/imgLogo-360.webp 360w, /assets/imgLogo-540.webp 540w" sizes="216px" width="216" height="80" loading="lazy" />
             </div>
-            <div className="[word-break:break-word] font-sans font-normal leading-[0] relative shrink-0 text-[15px] text-[color:var(--color-stone,#f3f1eb)] whitespace-nowrap" data-node-id="2006:85">
+            <div className="[word-break:break-word] font-sans font-normal leading-[0] relative shrink-0 text-[15px] text-[color:var(--color-stone,#f3f1eb)] whitespace-normal w-full min-w-0" data-node-id="2006:85">
               <p className="leading-[1.6] mb-0">Family-owned investment and advisory company</p>
               <p className="leading-[1.6]">Dubai, United Arab Emirates</p>
             </div>
