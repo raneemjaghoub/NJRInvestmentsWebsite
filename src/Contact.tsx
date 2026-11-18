@@ -162,7 +162,7 @@ function EnquiryForm() {
 export default function Contact() {
   return <div className="contact-page">
     <main>
-      <section className="wwd-hero wwd-container contact-hero"><nav aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span>Contact</span></nav><p className="wwd-eyebrow">Contact</p><h1>Contact NJR Investments</h1><p className="wwd-hero-description">Tell us what you are working on. Choosing an enquiry type helps us route your message to the right person.</p></section>
+      <section className="wwd-hero wwd-container contact-hero"><p className="wwd-eyebrow">Contact</p><h1>Contact NJR Investments</h1><p className="wwd-hero-description">Tell us what you are working on. Choosing an enquiry type helps us route your message to the right person.</p></section>
       <section className="contact-main wwd-container" aria-label="Enquiry form and contact details">
         <EnquiryForm />
         <aside className="contact-details"><p className="wwd-eyebrow">Get in touch</p>

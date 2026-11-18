@@ -21,7 +21,7 @@ export default function About() {
   return <div className="about-page">
     <main>
       <section className="wwd-hero wwd-container about-hero">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span>About</span></nav>
+        
         <p className="wwd-eyebrow">About NJR</p>
         <h1>A family investment company, built across two generations</h1>
         <p className="wwd-hero-description">Founded and based in Dubai, with partners on four continents, NJR Investments brings together the experience of its founding generation and the perspective of the next.</p>

@@ -74,7 +74,7 @@ export default function Home() {
             <span className="desktop-only">NJR Investments is a multi-generational, family-owned company based in Dubai, with partners across the GCC, Europe, Asia, Africa and South America. We advise companies entering and growing in the UAE and the wider GCC, connect promising businesses with investors, clients and partners, and enter joint ventures with selected companies.</span><span className="mobile-only">A multi-generational, family-owned company in Dubai with global connections. We advise companies entering the UAE and the wider GCC, connect businesses with investors, clients and partners, and enter joint ventures.</span>
           </p>
           <div className="content-stretch cursor-pointer flex gap-[16px] items-start overflow-clip relative shrink-0" data-node-id="2004:33" data-name="CTAs">
-            <Button className="bg-[var(--color-gold,#cfbb75)] content-stretch flex items-center justify-center px-[28px] py-[16px] relative rounded-[2px] shrink-0" label="Expanding into the Gulf" href="/what-we-do/" />
+            <Button className="border border-transparent border-solid bg-[var(--color-gold,#cfbb75)] content-stretch flex items-center justify-center px-[28px] py-[16px] relative rounded-[2px] shrink-0" label="Expanding into the Gulf" href="/what-we-do/" />
             <Button className="border border-[var(--color-white,white)] border-solid content-stretch flex items-center justify-center px-[28px] py-[16px] relative rounded-[2px] shrink-0" label="Connections and joint ventures" href="/what-we-do/" style="Outline light" />
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function Home() {
               Strategic advice for companies entering and growing in the UAE and the wider GCC, from market strategy and regulatory guidance to the right local partnerships.
             </p>
             <a href="/what-we-do/#advisory" className="block cursor-pointer font-sans font-bold leading-[0] relative shrink-0 text-[15px] text-[color:var(--color-ink,#121110)] whitespace-nowrap" data-node-id="2005:14">
-              <p className="leading-[normal] whitespace-pre">{`Explore advisory services  →`}</p>
+              <p className="leading-[normal] whitespace-pre">{`Learn more  →`}</p>
             </a>
           </div>
           <div className="bg-[var(--color-white,white)] border-[var(--color-gold,#cfbb75)] border-solid border-t-3 content-stretch flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px pb-[48px] pt-[44px] px-[48px] relative self-stretch" data-node-id="2005:15" data-name="Path — Investor connections">
@@ -148,7 +148,7 @@ export default function Home() {
               We identify promising companies and connect them with the right investors, clients and partners in our global network, supporting both sides as the relationship develops.
             </p>
             <a href="/what-we-do/#connections" className="block cursor-pointer font-sans font-bold leading-[0] relative shrink-0 text-[15px] text-[color:var(--color-ink,#121110)] whitespace-nowrap" data-node-id="2005:19">
-              <p className="leading-[normal] whitespace-pre">{`Talk to us about connections  →`}</p>
+              <p className="leading-[normal] whitespace-pre">{`Learn more  →`}</p>
             </a>
           </div>
           <div className="bg-[var(--color-white,white)] border-[var(--color-gold,#cfbb75)] border-solid border-t-3 content-stretch flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px pb-[48px] pt-[44px] px-[48px] relative self-stretch" data-node-id="2018:50" data-name="Path — Joint ventures">
@@ -162,7 +162,7 @@ export default function Home() {
               For the right opportunities, we go further and partner with companies through a joint venture, including setting up and running the business in the region.
             </p>
             <a href="/contact/?type=joint-venture" className="block cursor-pointer font-sans font-bold leading-[0] relative shrink-0 text-[15px] text-[color:var(--color-ink,#121110)] whitespace-nowrap" data-node-id="2018:54">
-              <p className="leading-[normal] whitespace-pre">{`Discuss a joint venture  →`}</p>
+              <p className="leading-[normal] whitespace-pre">{`Learn more  →`}</p>
             </a>
           </div>
         </div>
@@ -406,7 +406,7 @@ export default function Home() {
                 We meet, in confidence
               </p>
               <p className="font-sans font-normal leading-[1.6] relative shrink-0 text-[15px] text-[color:var(--color-muted,#5c564e)] w-full" data-node-id="2042:70">
-                If there is a fit, we arrange a call or a meeting in Dubai, with an NDA in place before any sensitive details are shared.
+                If there is mutual alignment, we arrange an introductory call or an in-person meeting.
               </p>
             </div>
           </div>

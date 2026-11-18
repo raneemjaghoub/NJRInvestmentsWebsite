@@ -60,3 +60,12 @@ a,p,dd,address {overflow-wrap:anywhere}
  .wwd-heading h2,.wwd-cta h2 {font-size:clamp(32px,2.78vw,40px);line-height:1.18}
 }
 @media (prefers-reduced-motion:reduce) {*,*::before,*::after {scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Keep hero labels and headings aligned when moving between main pages. */
+:root {--hero-content-top:64px}
+[data-name='Hero'],.wwd-hero {padding-top:var(--hero-content-top)}
+[data-name='Hero text'] {gap:24px}
+[data-node-id='2004:30'] {line-height:16px}
+@media (max-width:639px) {
+ :root {--hero-content-top:40px}
+}

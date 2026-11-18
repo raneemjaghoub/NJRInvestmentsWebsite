@@ -14,7 +14,7 @@ const rights = ['tell you what information we hold about you', 'correct or delet
 export default function PrivacyPolicy() {
   return <div className="legal-page">
     <main>
-      <header className="legal-hero wwd-container"><nav aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span>Privacy policy</span></nav><h1>Privacy policy</h1><p>Last modified: <time dateTime={legalLastModified.date}>{legalLastModified.label}</time></p></header>
+      <header className="legal-hero wwd-container"><h1>Privacy policy</h1><p>Last modified: <time dateTime={legalLastModified.date}>{legalLastModified.label}</time></p></header>
       <div className="legal-body wwd-container"><article className="legal-content" aria-label="Privacy policy">
         <p>This policy explains how NJR Investments LLC uses the personal information you give us through this website, in line with the UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021).</p>
         {sections.map(([heading, text]) => <section key={heading}><h2>{heading}</h2><p>{text}</p></section>)}

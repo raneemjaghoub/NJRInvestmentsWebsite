@@ -38,3 +38,6 @@ a[data-node-id='2005:27'],a[data-node-id='2005:27']:hover,
 
 /* Match the mobile navigation arrows to the Figma gold token. */
 .mobile-menu > a > span {color:var(--color-gold);font:400 20px/normal var(--font-sans)}
+
+/* Use text emphasis instead of a box when a navigation link has keyboard focus. */
+.wwd-header nav > a:focus-visible,.mobile-menu > a:focus-visible {outline:none;text-decoration:underline;text-underline-offset:5px}

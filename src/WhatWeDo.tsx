@@ -85,7 +85,7 @@ export default function WhatWeDo() {
   return <div className="wwd-page">
     <main>
       <section className="wwd-hero wwd-container">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span>What we do</span></nav>
+        
         <p className="wwd-eyebrow">What we do</p>
         <h1>Helping companies enter the Gulf, make the right connections and build partnerships</h1>
         <p className="wwd-hero-description">NJR works with companies in three ways: advisory services for entering and growing in the UAE and the wider GCC, introductions to investors, clients and partners, and joint ventures with selected companies.</p>
