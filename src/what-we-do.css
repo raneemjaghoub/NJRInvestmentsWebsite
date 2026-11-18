@@ -136,3 +136,10 @@
  .wwd-footer-links a {line-height:18px}
  .wwd-footer-legal {line-height:15px}
 }
+
+
+/* Let this longer section heading use the full content width. */
+.wwd-audiences > .wwd-heading h2 {max-width:none}
+@media (min-width:1024px) {
+ .wwd-audiences > .wwd-heading h2 {white-space:nowrap}
+}

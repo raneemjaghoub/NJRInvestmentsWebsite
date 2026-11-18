@@ -70,7 +70,7 @@ export function PageHeader({ active = 'what-we-do' }: { active?: 'home' | 'about
 export function PageFooter({ active = 'what-we-do' }: { active?: 'home' | 'about' | 'what-we-do' | 'contact' | 'privacy' | 'terms' }) {
   return <footer className="wwd-footer wwd-container">
     <div className="wwd-footer-columns">
-      <div className="wwd-brand"><a href="/" aria-label="NJR Investments home"><img src="/assets/imgLogo-360.webp" srcSet="/assets/imgLogo-180.webp 180w, /assets/imgLogo-360.webp 360w, /assets/imgLogo-540.webp 540w" sizes="(max-width: 599px) 130px, 216px" alt="NJR Investments" width="216" height="80" /></a><p className="wwd-desktop">Family investment company<br />Dubai, United Arab Emirates</p><p className="wwd-mobile">Family investment company · Dubai, UAE</p></div>
+      <div className="wwd-brand"><a href="/" aria-label="NJR Investments home"><img src="/assets/imgLogo-360.webp" srcSet="/assets/imgLogo-180.webp 180w, /assets/imgLogo-360.webp 360w, /assets/imgLogo-540.webp 540w" sizes="(max-width: 599px) 130px, 216px" alt="NJR Investments" width="216" height="80" /></a><p className="wwd-desktop">Family-owned investment and advisory company<br />Dubai, United Arab Emirates</p><p className="wwd-mobile">Family-owned investment and advisory company<br />Dubai, United Arab Emirates</p></div>
       <div className="wwd-footer-links">
         <div><h3>Company</h3><a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About</a><a href="/what-we-do/" aria-current={active === 'what-we-do' ? 'page' : undefined}>What we do</a><a href="/contact/" aria-current={active === 'contact' ? 'page' : undefined}>Contact</a></div>
         <div><h3>Services</h3><a href="/what-we-do/#advisory">Advisory services</a><a href="/what-we-do/#connections">Strategic connections</a><a href="/what-we-do/#joint-ventures">Joint ventures</a></div>
@@ -87,12 +87,12 @@ export default function WhatWeDo() {
       <section className="wwd-hero wwd-container">
         
         <p className="wwd-eyebrow">What we do</p>
-        <h1>Helping companies enter the Gulf, make the right connections and build partnerships</h1>
-        <p className="wwd-hero-description">NJR works with companies in three ways: advisory services for entering and growing in the UAE and the wider GCC, introductions to investors, clients and partners, and joint ventures with selected companies.</p>
+        <h1>Investment, advice and partnerships for growth across the Gulf</h1>
+        <p className="wwd-hero-description">We support businesses entering and expanding across the UAE and wider GCC through strategic advice, commercial introductions, direct investment and joint ventures.</p>
         <Button className="njr-button" label="Discuss your plans" />
       </section>
       <section className="wwd-audiences wwd-container">
-        <SectionHeading label="Who we work with" title="Support shaped around where you are" />
+        <SectionHeading label="Who we work with" title="Support tailored to your business and stage of growth" />
         <div className="wwd-audience-grid">{audiences.map(([title, description]) => <article key={title}><h3>{title}</h3><p>{description}</p></article>)}</div>
       </section>
       <section id="advisory" className="wwd-service-section wwd-container">
@@ -107,7 +107,7 @@ export default function WhatWeDo() {
         <SectionHeading label="How we work" title="From first conversation to running business" />
         <ol>{steps.map(([title, description], index) => <li key={title}><span className="wwd-step-number">0{index + 1}</span><h3>{title}</h3><p>{description}</p></li>)}</ol>
       </section>
-      <section className="wwd-cta wwd-container"><div><h2>Planning a move into the Gulf?</h2><p>Tell us about your plans and the right person on our team will be in touch.</p></div><Button className="njr-button" label="Start a conversation" /></section>
+      <section className="wwd-cta wwd-container"><div><h2>Planning a move into the Gulf?</h2><p>Tell us about your business, objectives and the support you require. Your enquiry will be directed to the appropriate member of our team.</p></div><Button className="njr-button" label="Start a conversation" /></section>
     </main>
     <PageFooter />
   </div>

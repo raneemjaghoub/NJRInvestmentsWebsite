@@ -6,7 +6,7 @@ import './about.css'
 const facts = [
   ['In business since', '1997'],
   ['Headquarters', 'Dubai, UAE'],
-  ['Industries', 'Many, including technology, aviation, energy and entertainment'],
+  ['Sector focus', 'Across industries'],
   ['Partners in', 'GCC, Europe, Asia, Africa, South America'],
 ]
 const values = [
@@ -23,7 +23,7 @@ export default function About() {
       <section className="wwd-hero wwd-container about-hero">
         
         <p className="wwd-eyebrow">About NJR</p>
-        <h1>A family investment company, built across two generations</h1>
+        <h1>A family-owned investment and advisory company, built across two generations</h1>
         <p className="wwd-hero-description">Founded and based in Dubai, with partners on four continents, NJR Investments brings together the experience of its founding generation and the perspective of the next.</p>
       </section>
       <section className="about-story wwd-container">
@@ -57,8 +57,8 @@ export default function About() {
       <section className="about-purpose wwd-container">
         <p className="wwd-eyebrow">Purpose</p>
         <div className="about-purpose-grid">
-          <article><h3>Our mission</h3><p>To build lasting value for the companies we work with, through local knowledge, the right connections and hands-on support.</p></article>
-          <article><h3>Our vision</h3><p>To be the partner international businesses and founders trust when they grow in the UAE and across the Gulf.</p></article>
+          <article><h3>Our mission</h3><p>To create long-term value through investment, strategic advice and partnerships that help businesses establish and grow across the Gulf.</p></article>
+          <article><h3>Our vision</h3><p>To be a trusted investment and advisory partner for businesses pursuing growth in the UAE and wider GCC.</p></article>
         </div>
       </section>
       <section className="about-values wwd-container">

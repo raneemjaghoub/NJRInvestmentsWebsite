@@ -65,7 +65,7 @@ export default function Home() {
         </div>
         <div className="content-stretch flex flex-col gap-[28px] items-start overflow-clip relative shrink-0 w-[640px]" data-node-id="2009:43" data-name="Hero text">
           <p className="[word-break:break-word] font-sans font-bold leading-[normal] relative shrink-0 text-[13px] text-[color:var(--color-gold,#cfbb75)] tracking-[1.82px] uppercase whitespace-nowrap" data-node-id="2004:30">
-            Family investment company · Dubai<span className="desktop-only">, UAE</span>
+            family-owned investment and advisory company · UAE
           </p>
           <h1 className="[word-break:break-word] font-display font-normal leading-[1.12] min-w-full relative shrink-0 text-[52px] text-[color:var(--color-white,white)] w-[min-content]" data-node-id="2004:31">
             Helping businesses enter, grow and find the right partners across the Gulf
@@ -419,7 +419,7 @@ export default function Home() {
               <img alt="NJR Investments" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgLogo} srcSet="/assets/imgLogo-180.webp 180w, /assets/imgLogo-360.webp 360w, /assets/imgLogo-540.webp 540w" sizes="216px" width="216" height="80" loading="lazy" />
             </div>
             <div className="[word-break:break-word] font-sans font-normal leading-[0] relative shrink-0 text-[15px] text-[color:var(--color-stone,#f3f1eb)] whitespace-nowrap" data-node-id="2006:85">
-              <p className="leading-[1.6] mb-0">Family investment company</p>
+              <p className="leading-[1.6] mb-0">Family-owned investment and advisory company</p>
               <p className="leading-[1.6]">Dubai, United Arab Emirates</p>
             </div>
           </div>
