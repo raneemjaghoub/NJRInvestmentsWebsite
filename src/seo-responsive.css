@@ -69,3 +69,10 @@ a,p,dd,address {overflow-wrap:anywhere}
 @media (max-width:639px) {
  :root {--hero-content-top:40px}
 }
+
+/* Align service-card labels, headings and bottom actions across each row. */
+[data-name='Path cards'] {align-items:stretch}
+[data-name='Path cards'] > [data-name^='Path —'] > a:last-child {margin-top:auto}
+@media (min-width:600px) {
+ [data-name='Path cards'] > [data-name^='Path —'] > p:first-child {min-height:30px;line-height:15px}
+}
